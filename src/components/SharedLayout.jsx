@@ -4,7 +4,7 @@ export const SharedLayout = () => {
     return (
         <div>
             <header>
-                <Link to="/" end>Home</Link>
+                <Link to="/goit-react-hw-05-movies">Home</Link>
                 <Link to='/movies'>Movies</Link>
             </header>
             <Outlet></Outlet>

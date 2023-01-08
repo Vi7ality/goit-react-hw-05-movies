@@ -1,28 +1,28 @@
-const { Link } = require("react-router-dom")
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { getTrandingMovies } from 'services/axiosService';
+import { TrandingMovieList } from './Home.styled';
+
+const { Link } = require('react-router-dom');
 
 export const Home = () => {
-    return (
-        <div>
-            <h1>
-                Tranding todal
-            </h1>
-            <ul>
-                <li>
-                    <Link>Film 1</Link>
-                </li>
-                <li>
-                    <Link> Film 2</Link>
-                </li>
-                <li>
-                    <Link>Film 3</Link>
-                </li>
-                <li>
-                    <Link>Film 4</Link>
-                </li>
-                <li>
-                    <Link>Film 5</Link>
-                </li>
-            </ul>
-        </div>
-    )
-}
+  const [movies, setMovies] = useState('');
+
+  useEffect(() => {
+    console.log('Get Tranding movies');
+    getTrandingMovies().then(response => setMovies(response));
+  }, []);
+
+  return (
+    <main>
+      <h1>Tranding today</h1>
+      {movies && (
+              <TrandingMovieList>
+          {movies.data.results.map(movie => {
+              return (<li key={movie.id}><Link to={`movies/${movie.id}`}>{movie.title}</Link></li>)
+          })}
+        </TrandingMovieList>
+      )}
+    </main>
+  );
+};
