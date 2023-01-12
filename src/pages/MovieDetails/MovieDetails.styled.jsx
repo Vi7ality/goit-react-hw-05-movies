@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 
-export const MovieDetailsMain = styled.main`
+export const MovieFlexContainer = styled.div`
     display: flex;
 `
 export const MovieDescriprion = styled.div`
