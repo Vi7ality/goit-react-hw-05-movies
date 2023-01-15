@@ -28,7 +28,7 @@ const MovieDetails = () => {
 
   return (
     <main>
-      <BackLink onClick={onGoBack}></BackLink>
+      <BackLink onClick={()=>onGoBack}></BackLink>
       <MovieFlexContainer>
         <img
           src={`https://image.tmdb.org/t/p/w500/${movieDetails.poster_path}`}
@@ -48,10 +48,10 @@ const MovieDetails = () => {
       <h3>Additional information</h3>
       <ul>
         <li>
-          <Link to="cast" >Cast</Link>
+          <Link to="cast" state={{ from: backLinkHref }}>Cast</Link>
         </li>
         <li>
-          <Link to="reviews" >Reviews</Link>
+          <Link to="reviews" state={{ from: backLinkHref }}>Reviews</Link>
         </li>
       </ul>
       <Suspense fallback={<LoaderSpinner />}>
