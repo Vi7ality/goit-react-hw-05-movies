@@ -45,7 +45,7 @@ const Reviews = () => {
       {status === 'noReviews' &&       <p>We don't have any review for this movie</p>}
 
       {status === 'rejected' && (
-        <p>Oops, something went wrong. Try to reload page.</p>
+        <p>{error}Oops, something went wrong. Try to reload page.</p>
       )}
 
 
