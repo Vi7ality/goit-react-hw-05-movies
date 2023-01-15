@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import { HiArrowLeft } from "react-icons/hi";
 
-export const BackLink = ({ to }) => {
+export const BackLink = ({ onClick }) => {
   return (
-    <Link to={to}>
+    <button type='button' onClick={onClick}>
       <HiArrowLeft size="24" />
       <p>Go back</p>
-    </Link>
+    </button>
   );
 };

@@ -1,28 +1,37 @@
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useSearchParams } from 'react-router-dom';
+import { LoaderSpinner } from 'components/Loader';
+import { lazy, Suspense, useEffect, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'services/axiosService';
 
-export const Movies = () => {
+const MovieList = lazy(()=>import("./MovieList"))
+
+const Movies = () => {
   const [movieList, setMovieList] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
+  const searchQuery = searchParams.get('query')
+
+  const location = useLocation();
 
   const handleSubmit = e => {
     e.preventDefault();
-    //   updateQueryString(e.target.value)
 
     const form = e.currentTarget;
     setSearchParams({ query: form.elements.query.value });
-    searchMovies(searchParams).then(response => {
+    searchMovies(searchQuery).then(response => {
       setMovieList(response.data.results);
     });
 
     form.reset();
   };
 
-  //   const updateQueryString = name => {
-  //     const nextParams = name !== '' ? { name } : {};
-  //     setSearchParams(nextParams);
-  //   };
+  useEffect(() => {
+    if (!searchQuery) return;
+    searchMovies(searchQuery).then(response => {
+      setMovieList(response.data.results);
+    });
+  },[searchQuery])
+
+
 
   return (
     <main>
@@ -32,16 +41,11 @@ export const Movies = () => {
         </label>
         <button type="submit">Search</button>
       </form>
-      <ul>
-        {movieList &&
-          movieList.map(({ title, id }) => {
-            return (
-              <li key={id}>
-                <Link to={`movies/${id}`}>{title}</Link>
-              </li>
-            );
-          })}
-      </ul>
+      <Suspense fallback={<LoaderSpinner/>}>
+        <MovieList location={location} movieList={movieList}></MovieList>
+    </Suspense>
     </main>
   );
 };
+
+export default Movies;

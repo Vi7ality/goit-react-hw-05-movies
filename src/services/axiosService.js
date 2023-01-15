@@ -7,7 +7,7 @@ axios.defaults.params = {
 
 export const searchMovies = async query => {
   return await axios.get(
-    `search/movie?${query}&language=en-US&page=1&include_adult=false`
+    `search/movie?query=${query}&language=en-US&page=1&include_adult=false`
   );
 };
 

@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieCredits } from "services/axiosService";
 
-export const Cast = () => {
-    const [movieCast, setMovieCast] = useState('');
+const Cast = () => {
+  const [movieCast, setMovieCast] = useState('');
   const { id } = useParams();
 
     useEffect(() => {
@@ -26,3 +26,4 @@ export const Cast = () => {
 </ul>
     )
 }
+export default Cast;

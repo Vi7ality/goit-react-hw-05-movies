@@ -5,7 +5,7 @@ import { TrandingMovieList } from './Home.styled';
 
 const { Link } = require('react-router-dom');
 
-export const Home = () => {
+const Home = () => {
   const [movies, setMovies] = useState('');
 
   useEffect(() => {
@@ -26,3 +26,5 @@ export const Home = () => {
     </main>
   );
 };
+
+export default Home;
