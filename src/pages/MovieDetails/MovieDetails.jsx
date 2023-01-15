@@ -1,4 +1,4 @@
-import { BackLink } from 'components/BackLink';
+import { BackLink } from 'components/BackLink/BackLink';
 import { LoaderSpinner } from 'components/Loader';
 import { Suspense, useState } from 'react';
 import { useEffect } from 'react';

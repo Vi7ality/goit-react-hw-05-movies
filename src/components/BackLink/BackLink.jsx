@@ -1,10 +1,11 @@
 import { HiArrowLeft } from "react-icons/hi";
+import { BackLinkBtn } from "./BackLink.styled";
 
 export const BackLink = ({ onClick }) => {
   return (
-    <button type='button' onClick={onClick()}>
+    <BackLinkBtn type='button' onClick={onClick()}>
       <HiArrowLeft size="24" />
       <p>Go back</p>
-    </button>
+    </BackLinkBtn>
   );
 };

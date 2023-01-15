@@ -2,8 +2,9 @@ import { LoaderSpinner } from 'components/Loader';
 import { lazy, Suspense, useEffect, useState } from 'react';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { searchMovies } from 'services/axiosService';
+import { SearchForm } from './Movies.styled';
 
-const MovieList = lazy(()=>import("./MovieList"))
+const MovieList = lazy(()=>import("../../components/MovieList"))
 
 const Movies = () => {
   const [movieList, setMovieList] = useState('');
@@ -35,12 +36,12 @@ const Movies = () => {
 
   return (
     <main>
-      <form action="" onSubmit={handleSubmit}>
+      <SearchForm action="" onSubmit={handleSubmit}>
         <label>
           <input name="query" type="text" />
         </label>
         <button type="submit">Search</button>
-      </form>
+      </SearchForm>
       <Suspense fallback={<LoaderSpinner/>}>
         <MovieList location={location} movieList={movieList}></MovieList>
     </Suspense>
